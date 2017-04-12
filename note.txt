@@ -1,0 +1,45 @@
+task 1: predict travel time  (enter into intersection in time window)
+
+ t_A_2  enter south
+ t_A_3  enter north
+ t_B_1  enter south
+ t_B_3  enter north
+ t_C_1  enter south
+ t_C_3  enter north
+
+ model travel time
+
+ t = t_run + t_wait_before_tollgate
+
+ t_run = f(flux_density,weather)
+ flux_density = h(flux,num_lane)
+ t_wait_before_tollgate = g(tollgate_waiting_volume(t-1),route_flux,tollgate_entry_velocity)
+
+
+task 2: predict tollgate volume
+
+ tollgate_1 out
+ tollgate_1 in
+ tollgate_2 in
+ tollgate_3 in
+ tollgate_3 out
+
+ volume in model
+
+ volume_in tollgate 1 = route_flux C_1 + route_flux B_1 + tollgate_waiting_volume(t-1) - tollgate_waiting_volume(t)
+ volume_in tollgate 2 = route_flux A_2 + tollgate_waiting_volume(t-1) - tollgate_waiting_volume(t)
+ volume_in tollgate 3 = route_flux A_3 + route_flux B_3 + route_flux C_3 + tollgate_waiting_volume(t-1) - tollgate_waiting_volume(t)
+
+ volume_out tollgate 1 = high way north out flux
+ volume_out tollgate 3 = high way south out flux
+
+
+   thinking method:
+
+   1,
+   calculating flux for each route first (cause it is a obvious feature)
+   maybe different part in volume too ...
+
+   2,
+   use model regression based on vehicle flux (here it seems difficult to combine table 5and table 6, if we can do this, it will better)
+   so maybe different model......
