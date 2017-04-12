@@ -110,8 +110,17 @@ print model_extra_volume.shape
 # pyplot.plot(model_extra_volume)
 # pyplot.show()
 
-res = sm.tsa.seasonal_decompose(model_1_volume[:,1],freq=72)
-resplot = res.plot()
-pyplot.show()
+# save seasonal (weekly) feature
+seasonal_matrix = np.empty((0,1440))
+for i in range(5):
+    res = sm.tsa.seasonal_decompose(model_1_volume[:,i],freq=72)
+    seasonal_matrix = np.vstack((seasonal_matrix,res.seasonal))
+for i in range(5):
+    res = sm.tsa.seasonal_decompose(model_2_volume[:,i],freq=72)
+    seasonal_matrix = np.vstack((seasonal_matrix,res.seasonal))
+for i in range(5):
+    res = sm.tsa.seasonal_decompose(model_extra_volume[:, i], freq=72)
+    seasonal_matrix = np.vstack((seasonal_matrix, res.seasonal))
 
-print 'ha ha ha'
+print seasonal_matrix
+np.savetxt('volumn_seasonal_feature.csv',seasonal_matrix[:,:24*3],fmt='%f')
