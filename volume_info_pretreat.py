@@ -152,6 +152,11 @@ for train_index,test_index in kf.split(days):
     file_path = 'volume_files/fold'+str(fold)+'/'
     fold = fold + 1
 
+    f = open(file_path+'train_CV_set.txt','w')
+    f.write(str(train_index))
+    f.write(str(test_index))
+    f.close()
+
     print 'save model 1'
     # save train total set
     train_set_fold = np.empty((0,5),dtype=int)
