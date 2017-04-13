@@ -18,3 +18,4 @@ print trainset.shape
 
 # step 2 : model for relative week
 
+print ''''''
