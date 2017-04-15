@@ -51,6 +51,8 @@ print relative_day_testset
 print 'start training .............................'
 prediction = np.zeros((7*72,5),dtype=float)
 total_set = np.zeros((16*72,5),dtype=int)
+CV_total_set = np.zeros((4*72,5),dtype=int)
+CV_total_set_prediction = np.zeros((4*72,5),dtype=float)
 
 for model in ['1','2','extra']:
     # step 1 : find seasonal part and remove seasonnal part
@@ -103,16 +105,16 @@ for model in ['1','2','extra']:
 
     # CV test
     CV_set = np.loadtxt('volume_files/fold1/model_'+model+'_CV_set.csv',dtype=int)
+    CV_total_set = CV_total_set + CV_set
 
     CV_set_prediction = CV_seasonal_part + CV_relative_weedday_part
+    CV_total_set_prediction = CV_total_set_prediction + CV_set_prediction
+
     # for i in range(5):
     #     pyplot.figure()
     #     pyplot.plot(CV_set[:,i])
     #     pyplot.plot(CV_set_prediction[:,i])
     #     pyplot.show()
-
-    # evaluate function
-
 
     # prediction for test set
     testset_seasonal_part = seasonal_part[:7*72,:]
@@ -126,6 +128,38 @@ for model in ['1','2','extra']:
 
     testset_prediction = testset_seasonal_part + testset_relative_weedday_part
     prediction = prediction + testset_prediction
+
+# visualizing CV set prediction
+CV_total_set_prediction[CV_total_set_prediction<0] = 0
+CV_total_set_prediction = np.round(CV_total_set_prediction)
+print CV_total_set_prediction.shape
+
+pyplot.figure()
+pyplot.plot(CV_total_set_prediction)
+pyplot.plot(CV_total_set)
+pyplot.show()
+
+CV_diff = np.abs(CV_total_set - CV_total_set_prediction)
+print CV_diff
+
+# evaluate function
+CV_prediction_up = np.zeros(120,dtype=int)
+CV_denum_up = np.zeros(120,dtype=int)
+for i in range(5):
+    for k in range(6):
+        for j in range(4):
+            CV_prediction_up[i*4*6+k*4+j] = CV_diff[72*j+21+k,i]
+            CV_denum_up[i*4*6+k*4+j] = CV_total_set[72*j+21+k,i]
+
+CV_prediction_down = np.zeros(120,dtype=int)
+CV_denum_down = np.zeros(120,dtype=int)
+for i in range(5):
+    for k in range(6):
+        for j in range(4):
+            CV_prediction_down[i*4*6+k*4+j] = CV_diff[72*j+48+k,i]
+            CV_denum_down[i*4*6+k*4+j] = CV_total_set[72*j+48+k,i]
+print 'score ..........................'
+print np.mean(np.hstack((CV_prediction_up,CV_prediction_down))/np.hstack((CV_denum_up,CV_denum_down)))
 
 # visualizing final prediction
 
