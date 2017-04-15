@@ -60,6 +60,10 @@ for str_line in txt:
 np.savetxt('volume_files/volume_training_set.csv',volume_info,fmt='%d')
 print volume_info.shape
 
+# pyplot.figure()
+# pyplot.plot(volume_info)
+# pyplot.show()
+
 # step2: delete national day 9 days
 # separate total volume into 3 part (model1 , model2 , model extra)
 #######################################################################################
@@ -181,19 +185,19 @@ for train_index,test_index in kf.split(days):
     # save train total set
     train_set_fold = np.empty((0,5),dtype=int)
     for i in train_index:
-        train_set_fold = np.vstack((train_set_fold,model_1_volume[72*i:72*(i+1),:]))
+        train_set_fold = np.vstack((train_set_fold,model_2_volume[72*i:72*(i+1),:]))
     print train_set_fold.shape
     np.savetxt(file_path+'model_2_trainset.csv',train_set_fold,'%d')
 
     # save CV total set
     CV_set_fold = np.empty((0,5),dtype=int)
     for i in test_index:
-        CV_set_fold = np.vstack((CV_set_fold,model_1_volume[72*i:72*(i+1),:]))
+        CV_set_fold = np.vstack((CV_set_fold,model_2_volume[72*i:72*(i+1),:]))
     print CV_set_fold.shape
     np.savetxt(file_path+'model_2_CV_set.csv',CV_set_fold,'%d')
 
     # save test set
-    test_set_fold = model_1_volume_testset_1
+    test_set_fold = model_2_volume_testset_1
     print test_set_fold.shape
     np.savetxt(file_path+'model_2_testset.csv',test_set_fold,'%d')
 
@@ -201,18 +205,18 @@ for train_index,test_index in kf.split(days):
     # save train total set
     train_set_fold = np.empty((0,5),dtype=int)
     for i in train_index:
-        train_set_fold = np.vstack((train_set_fold,model_1_volume[72*i:72*(i+1),:]))
+        train_set_fold = np.vstack((train_set_fold,model_extra_volume[72*i:72*(i+1),:]))
     print train_set_fold.shape
     np.savetxt(file_path+'model_extra_trainset.csv',train_set_fold,'%d')
 
     # save CV total set
     CV_set_fold = np.empty((0,5),dtype=int)
     for i in test_index:
-        CV_set_fold = np.vstack((CV_set_fold,model_1_volume[72*i:72*(i+1),:]))
+        CV_set_fold = np.vstack((CV_set_fold,model_extra_volume[72*i:72*(i+1),:]))
     print CV_set_fold.shape
     np.savetxt(file_path+'model_extra_CV_set.csv',CV_set_fold,'%d')
 
     # save test set
-    test_set_fold = model_1_volume_testset_1
+    test_set_fold = model_extra_volume_testset_1
     print test_set_fold.shape
     np.savetxt(file_path+'model_extra_testset.csv',test_set_fold,'%d')
