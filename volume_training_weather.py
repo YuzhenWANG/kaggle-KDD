@@ -11,8 +11,7 @@ weather=pd.read_csv('input/weather (table 7)_training.csv')
 weather=weather.drop(['pressure','sea_pressure','wind_direction','wind_speed','rel_humidity'],axis=1)
 #fill in 10.10 data
 weather_1010=weather[718:726]
-print weather
-print weather_1010
+
 for i in range(0,8):
     weather_1010.iloc[i,0]='2016-10-10'
     weather_1010.iloc[i,1]=3*i
@@ -22,7 +21,7 @@ weather.iloc[647,0]='2016-09-29'
 weather.iloc[647,1]=21
 weather=np.vstack((weather[560:648],weather[718:726],weather_1010,weather[726:]) )  #weather[560:648] : 9.19-9.29  weather[718:]     #10.09-10.17
 print weather.shape  #20 days' weather info in every 3 hours
-print weather
+
 #convert the weather information in every 20 mins
 weather_min= [[0 for col in range(4)] for row in range(1)]
 for i in range(weather.shape[0]):
@@ -67,3 +66,6 @@ for i in ['1','2','extra']: #model
         #     print"**************** when p>0.05 rain *****************"
         #     print "correlation between volume and rain for model ", i, "at tollgate ", j, ":  "
         #     print pearsonr(weather_min[:, 3], model_j)
+
+
+
