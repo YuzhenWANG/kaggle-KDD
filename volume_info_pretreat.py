@@ -224,3 +224,4 @@ for train_index,CV_index in kf.split(days):
     test_set_fold = model_extra_volume_testset_1
     print test_set_fold.shape
     np.savetxt(file_path+'model_extra_testset.csv',test_set_fold,'%d')
+
