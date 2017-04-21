@@ -5,7 +5,7 @@ volume1=np.loadtxt('volume_files/volume_model1_trainset.csv')
 submission_table = pd.read_csv('submission_sample_volume.csv')
 prediction=np.zeros((7*72,5),dtype=float)
 relative_weekday = [2,2,3,4,5,6,7,1,2,3,4,2,2,3,3,4,5,6,7,1]
-predict_weekday=[3,4,5,6,7,1,2]
+predict_weekday=[2,3,4,5,6,7,1]
 
 print type(volume1)
 print volume1.shape

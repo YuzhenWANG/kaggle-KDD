@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c1e8333-8b42-48bf-9a29-544c04aa7afe" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/links (table 3).csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/routes (table 4).csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/submission_sample_travelTime.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/submission_sample_volume.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/training_20min_avg_travel_time.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/training_20min_avg_volume.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/trajectories(table 5)_test1.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/trajectories(table 5)_training.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/weather (table 7)_training_update.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/average_relative_weekday.py" afterPath="$PROJECT_DIR$/average_relative_weekday.py" />
     </list>
     <ignored path="project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,29 +26,21 @@
       <file leaf-file-name="volume_info_pretreat.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/volume_info_pretreat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="820">
-              <caret line="225" column="70" selection-start-line="225" selection-start-column="70" selection-end-line="225" selection-end-column="70" />
+            <state relative-caret-position="3294">
+              <caret line="195" column="23" selection-start-line="195" selection-start-column="23" selection-end-line="195" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="volume_training.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/volume_training.py">
+      <file leaf-file-name="average_relative_weekday.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/average_relative_weekday.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="166" column="74" selection-start-line="166" selection-start-column="74" selection-end-line="166" selection-end-column="74" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="links (table 3).csv" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/input/links (table 3).csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="298">
+              <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,15 +75,17 @@
         <option value="$PROJECT_DIR$/volume_files.py" />
         <option value="$PROJECT_DIR$/volume_files/fold1.py" />
         <option value="$PROJECT_DIR$/volume_files/fold3.py" />
+        <option value="$PROJECT_DIR$/volume_training.py" />
         <option value="$PROJECT_DIR$/volume_info_pretreat.py" />
+        <option value="$PROJECT_DIR$/average_relative_weekday.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="52" />
-    <option name="width" value="927" />
-    <option name="height" value="1028" />
+    <option name="y" value="24" />
+    <option name="width" value="1855" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -366,18 +352,33 @@
       <option name="presentableId" value="Default" />
       <updated>1492562457583</updated>
     </task>
+    <task id="LOCAL-00001" summary="sad ...... -_-">
+      <created>1492783009573</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1492783009573</updated>
+    </task>
+    <task id="LOCAL-00002" summary="right version now.....">
+      <created>1492783421626</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1492783421626</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="52" width="927" height="1028" extended-state="4" />
+    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37942478" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18722707" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31941545" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.71816283" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2376344" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23068893" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24936171" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -439,6 +440,11 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="sad ...... -_-" />
+    <MESSAGE value="right version now....." />
+    <option name="LAST_COMMIT_MESSAGE" value="right version now....." />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="6" />
@@ -446,9 +452,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dataSets/training/routes (table 4).csv" />
-    <entry file="file://$PROJECT_DIR$/dataCheck.py" />
-    <entry file="file://$PROJECT_DIR$/scripts/aggregate_travel_time.py" />
     <entry file="file://$USER_HOME$/anaconda2/lib/python2.7/site-packages/pandas/io/parsers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
@@ -513,38 +516,65 @@
     <entry file="file://$PROJECT_DIR$/input/submission_sample_volume.csv" />
     <entry file="file://$PROJECT_DIR$/volume_training2.py" />
     <entry file="file://$PROJECT_DIR$/scripts/aggregate_volume.py" />
-    <entry file="file://$PROJECT_DIR$/volume_training_weather.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="57" column="14" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/volume_files.py" />
     <entry file="file://$PROJECT_DIR$/input/volume(table 6)_test1.csv" />
     <entry file="file://$PROJECT_DIR$/volume_files/fold1.py" />
     <entry file="file://$PROJECT_DIR$/volume_files/fold3.py" />
-    <entry file="file://$PROJECT_DIR$/volume_info_pretreat.py">
+    <entry file="file://$PROJECT_DIR$/input/links (table 3).csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="820">
-          <caret line="225" column="70" selection-start-line="225" selection-start-column="70" selection-end-line="225" selection-end-column="70" />
+        <state relative-caret-position="450">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/volume_training_weather.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="57" column="14" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/volume_submission_relativeday.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-108">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/volume_training.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="166" column="74" selection-start-line="166" selection-start-column="74" selection-end-line="166" selection-end-column="74" />
+        <state relative-caret-position="630">
+          <caret line="51" column="27" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/input/links (table 3).csv">
+    <entry file="file://$PROJECT_DIR$/input/training_20min_avg_volume.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/volume_info_pretreat.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3294">
+          <caret line="195" column="23" selection-start-line="195" selection-start-column="23" selection-end-line="195" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/average_relative_weekday.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
