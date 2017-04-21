@@ -19,6 +19,9 @@ def all_indices(value, qlist):
             break
     return indices
 
+final_submission = np.zeros((7*72,5),dtype=float)
+
+score_list = []
 for fold in range(1,6):
     print '************************************************'
     print '    fold  ' + str(fold)
@@ -59,9 +62,13 @@ for fold in range(1,6):
 
     for model in ['1','2','extra']:
         print 'model : '+ model
+
         # step 1 : find seasonal part and remove seasonnal part
         print 'step 1: sesonal weekly model'
         trainset = np.loadtxt('volume_files/fold'+str(fold)+'/model_'+model+'_trainset.csv',dtype=int)
+
+        print np.mean(trainset,axis=0)
+
         total_set = total_set + trainset
         seasonal_part = np.empty((0,72*7))
         for i in range(5):
@@ -89,6 +96,9 @@ for fold in range(1,6):
                 relative_weekday_part[num*72:(num+1)*72,i] = (1+alpha_model_value[j-1,i]) * relative_weekday_part[num*72:(num+1)*72,i]
 
         trainset = trainset - relative_weekday_part
+
+        # step 3 : weather influence
+
 
         # CV prediction
         print 'predict CV set '
@@ -128,31 +138,49 @@ for fold in range(1,6):
     CV_total_set_prediction[CV_total_set_prediction<0] = 0
     CV_total_set_prediction = np.round(CV_total_set_prediction)
 
-    # pyplot.figure()
-    # pyplot.plot(CV_total_set_prediction)
-    # pyplot.plot(CV_total_set)
-    # pyplot.show()
+    # for i in range(5):
+    #     pyplot.figure()
+    #     pyplot.plot(CV_total_set_prediction[:,i])
+    #     pyplot.plot(CV_total_set[:,i])
+    #     pyplot.show()
 
-    CV_diff = np.abs(CV_total_set - CV_total_set_prediction)
+    CV_diff = CV_total_set - CV_total_set_prediction
+    CV_diff = np.abs(CV_diff)
+
+    print CV_diff.shape
 
     # evaluate function
-    CV_prediction_up = np.zeros(120,dtype=int)
-    CV_denum_up = np.zeros(120,dtype=int)
+    CV_prediction_up = np.zeros(120,dtype=float)
+    CV_denum_up = np.zeros(120,dtype=float)
     for i in range(5):
         for k in range(6):
             for j in range(4):
-                CV_prediction_up[i*4*6+k*4+j] = CV_diff[72*j+21+k,i]
-                CV_denum_up[i*4*6+k*4+j] = CV_total_set[72*j+21+k,i]
+                CV_prediction_up[i*4*6+k*4+j] = CV_diff[72*j+24+k,i]
+                CV_denum_up[i*4*6+k*4+j] = CV_total_set[72*j+24+k,i] + 1
 
-    CV_prediction_down = np.zeros(120,dtype=int)
-    CV_denum_down = np.zeros(120,dtype=int)
+    CV_prediction_down = np.zeros(120,dtype=float)
+    CV_denum_down = np.zeros(120,dtype=float)
     for i in range(5):
         for k in range(6):
             for j in range(4):
                 CV_prediction_down[i*4*6+k*4+j] = CV_diff[72*j+51+k,i]
-                CV_denum_down[i*4*6+k*4+j] = CV_total_set[72*j+51+k,i]
+                CV_denum_down[i*4*6+k*4+j] = CV_total_set[72*j+51+k,i] + 1
     print 'score ..........................'
-    print np.mean(np.hstack((CV_prediction_up,CV_prediction_down))/np.hstack((CV_denum_up,CV_denum_down)))
+    #
+    pyplot.figure()
+    pyplot.plot(np.hstack((CV_prediction_up,CV_prediction_down)))
+    pyplot.plot(np.hstack((CV_denum_up,CV_denum_down)))
+    pyplot.show()
+    #
+    pyplot.figure()
+    pyplot.plot(np.hstack((CV_prediction_up,CV_prediction_down))/np.hstack((CV_denum_up,CV_denum_down)))
+    pyplot.show()
+
+    CV_results = np.hstack((CV_prediction_up,CV_prediction_down))/np.hstack((CV_denum_up,CV_denum_down))
+    CV_results[CV_results>10] = 1
+
+    print np.mean(CV_results)
+    score_list.append(np.mean(np.hstack((CV_prediction_up,CV_prediction_down))/np.hstack((CV_denum_up,CV_denum_down))))
 
     # visualizing final prediction
 
@@ -160,27 +188,37 @@ for fold in range(1,6):
     prediction = np.round(prediction)
     print prediction.shape
 
-    pyplot.figure()
-    pyplot.plot(total_set)
-    pyplot.plot(np.transpose(np.vstack((np.arange(16*72,23*72),np.arange(16*72,23*72),np.arange(16*72,23*72),np.arange(16*72,23*72),np.arange(16*72,23*72)))),prediction)
-    pyplot.show()
+    final_submission = final_submission + prediction
+
+    # pyplot.figure()
+    # pyplot.plot(total_set)
+    # pyplot.plot(np.transpose(np.vstack((np.arange(16*72,23*72),np.arange(16*72,23*72),np.arange(16*72,23*72),np.arange(16*72,23*72),np.arange(16*72,23*72)))),prediction)
+    # pyplot.show()
+
+# CV score predict
+print 'final CV score '
+print score_list
+print np.mean(score_list)
 
 # generating submission files
+final_submission = np.round(final_submission/5)+1
+
 submission_up = np.zeros(210,dtype=int)
 for i in range(5):
     for k in range(6):
         for j in range(7):
-            submission_up[i*7*6+k*7+j] = prediction[72*j+21+k,i]
+            submission_up[i*7*6+k*7+j] = final_submission[72*j+24+k,i]
 
 submission_down = np.zeros(210,dtype=int)
 for i in range(5):
     for k in range(6):
         for j in range(7):
-            submission_down[i*7*6+k*7+j] = prediction[72*j+51+k,i]
+            submission_down[i*7*6+k*7+j] = final_submission[72*j+51+k,i]
 
 submission = np.hstack((submission_up,submission_down))
 submission_table = pd.read_csv('input/submission_sample_volume.csv')
 print submission.shape
+
 
 pyplot.figure()
 pyplot.plot(submission)
@@ -188,3 +226,4 @@ pyplot.show()
 
 submission_table['volume'] = submission
 submission_table.to_csv('volume_submission.csv',index=False)
+

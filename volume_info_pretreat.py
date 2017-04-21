@@ -36,6 +36,7 @@ fr = open('input/volume(table 6)_training.csv', 'r')
 fr.readline()
 txt = fr.readlines()  # skip the header
 fr.close()
+
 for str_line in txt:
     str_line = str_line.replace('"', '').split(',')
     tollgate_id = str_line[1]
@@ -83,9 +84,12 @@ np.savetxt('volume_files/volume_model1_trainset.csv',model_1_volume,fmt='%d')
 np.savetxt('volume_files/volume_model2_trainset.csv',model_2_volume,fmt='%d')
 np.savetxt('volume_files/volume_modelextra_trainset.csv',model_extra_volume,fmt='%d')
 
-# pyplot.figure()
-# pyplot.plot(model_extra_volume)
-# pyplot.show()
+for i in range(5):
+    pyplot.figure()
+    pyplot.plot(model_1_volume[:,i])
+    pyplot.plot(model_2_volume[:,i])
+    pyplot.plot(model_extra_volume[:,i])
+    pyplot.show()
 
 # step3: prepare test set 1
 # save testset1 into 3 (7 * 24 *3, 5) matrix
@@ -150,15 +154,15 @@ relative_weed = [2,2,3,4,5,6,7,1,2,3,4,2,2,3,3,4,5,6,7,1]
 
 kf = KFold(n_splits=5,random_state = 5)
 fold = 1
-for train_index,test_index in kf.split(days):
+for train_index,CV_index in kf.split(days):
     print 'fold:' +str(fold)
-    print train_index,test_index
+    print train_index,CV_index
     file_path = 'volume_files/fold'+str(fold)+'/'
     fold = fold + 1
 
     f = open(file_path+'train_CV_set.txt','w')
     f.write(str(train_index))
-    f.write(str(test_index))
+    f.write(str(CV_index))
     f.close()
 
     print 'save model 1'
@@ -171,7 +175,7 @@ for train_index,test_index in kf.split(days):
 
     # save CV total set
     CV_set_fold = np.empty((0,5),dtype=int)
-    for i in test_index:
+    for i in CV_index:
         CV_set_fold = np.vstack((CV_set_fold,model_1_volume[72*i:72*(i+1),:]))
     print CV_set_fold.shape
     np.savetxt(file_path+'model_1_CV_set.csv',CV_set_fold,'%d')
@@ -191,7 +195,7 @@ for train_index,test_index in kf.split(days):
 
     # save CV total set
     CV_set_fold = np.empty((0,5),dtype=int)
-    for i in test_index:
+    for i in CV_index:
         CV_set_fold = np.vstack((CV_set_fold,model_2_volume[72*i:72*(i+1),:]))
     print CV_set_fold.shape
     np.savetxt(file_path+'model_2_CV_set.csv',CV_set_fold,'%d')
@@ -211,7 +215,7 @@ for train_index,test_index in kf.split(days):
 
     # save CV total set
     CV_set_fold = np.empty((0,5),dtype=int)
-    for i in test_index:
+    for i in CV_index:
         CV_set_fold = np.vstack((CV_set_fold,model_extra_volume[72*i:72*(i+1),:]))
     print CV_set_fold.shape
     np.savetxt(file_path+'model_extra_CV_set.csv',CV_set_fold,'%d')
