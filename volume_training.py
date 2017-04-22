@@ -167,14 +167,14 @@ for fold in range(1,6):
                 CV_denum_down[i*4*6+k*4+j] = CV_total_set[72*j+51+k,i] + 1
     print 'score ..........................'
     #
-    pyplot.figure()
-    pyplot.plot(np.hstack((CV_prediction_up,CV_prediction_down)))
-    pyplot.plot(np.hstack((CV_denum_up,CV_denum_down)))
-    pyplot.show()
-    #
-    pyplot.figure()
-    pyplot.plot(np.hstack((CV_prediction_up,CV_prediction_down))/np.hstack((CV_denum_up,CV_denum_down)))
-    pyplot.show()
+    # pyplot.figure()
+    # pyplot.plot(np.hstack((CV_prediction_up,CV_prediction_down)))
+    # pyplot.plot(np.hstack((CV_denum_up,CV_denum_down)))
+    # pyplot.show()
+    # #
+    # pyplot.figure()
+    # pyplot.plot(np.hstack((CV_prediction_up,CV_prediction_down))/np.hstack((CV_denum_up,CV_denum_down)))
+    # pyplot.show()
 
     CV_results = np.hstack((CV_prediction_up,CV_prediction_down))/np.hstack((CV_denum_up,CV_denum_down))
     CV_results[CV_results>10] = 1
@@ -190,10 +190,10 @@ for fold in range(1,6):
 
     final_submission = final_submission + prediction
 
-    # pyplot.figure()
-    # pyplot.plot(total_set)
-    # pyplot.plot(np.transpose(np.vstack((np.arange(16*72,23*72),np.arange(16*72,23*72),np.arange(16*72,23*72),np.arange(16*72,23*72),np.arange(16*72,23*72)))),prediction)
-    # pyplot.show()
+    pyplot.figure()
+    pyplot.plot(total_set)
+    pyplot.plot(np.transpose(np.vstack((np.arange(16*72,23*72),np.arange(16*72,23*72),np.arange(16*72,23*72),np.arange(16*72,23*72),np.arange(16*72,23*72)))),prediction)
+    pyplot.show()
 
 # CV score predict
 print 'final CV score '
